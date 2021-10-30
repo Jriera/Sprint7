@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Servei } from '../models/servei';
+import { ServeiWeb } from '../models/serveiWeb';
+import { CalculTotalsService } from '../services/calcul-totals.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +12,26 @@ export class HomeComponent implements OnInit {
   webCheckboxFlag:boolean=false
   seoCheckboxFlag:boolean=false
   adsCheckboxFlag:boolean=false
-  web:number=0
-  seo:number=0
-  ads:number=0
+
+  web:ServeiWeb={
+    nom:'web',
+    preu:500,
+    pagines:0,
+    idiomes:0
+  }
+
+  seo:Servei={
+    nom:'seo',
+    preu:300
+  }
+
+  ads:Servei={
+    nom:'ads',
+    preu:200
+  }
+
   total=0;
-  constructor() { }
+  constructor(private operativaServeis:CalculTotalsService) { }
 
   ngOnInit(): void {
   }
@@ -21,19 +39,25 @@ export class HomeComponent implements OnInit {
 
 webSelected(){
   this.webCheckboxFlag=!this.webCheckboxFlag;
-  (this.webCheckboxFlag===true?this.web=500:this.web=0);
+  this.webCheckboxFlag===true?this.operativaServeis.addServei(this.web):this.operativaServeis.removeServei(this.web)
+  
 }
 seoSelected(){
   this.seoCheckboxFlag=!this.seoCheckboxFlag;
-  (this.seoCheckboxFlag===true?this.seo=300:this.seo=0);
+  this.seoCheckboxFlag===true?this.operativaServeis.addServei(this.seo):this.operativaServeis.removeServei(this.seo)
+ 
 }
 adsSelected(){
   this.adsCheckboxFlag=!this.adsCheckboxFlag;
-  (this.adsCheckboxFlag===true?this.ads=200:this.ads=0);
-}
-getTotal(){
-  this.total=this.web+this.seo+this.ads;
+  this.adsCheckboxFlag===true?this.operativaServeis.addServei(this.ads):this.operativaServeis.removeServei(this.ads)
  
 }
+
+getTotal():void{
+  this.operativaServeis.calculTotal();
+  this.total=this.operativaServeis.totalServeis;
+  
+}
+
 
 }
