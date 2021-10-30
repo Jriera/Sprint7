@@ -1,0 +1,8 @@
+<h4>Que desitges fer?</h4>
+<input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
+<app-panell *ngIf='webCheckboxFlag===true'></app-panell>
+<input type="checkbox" [(ngModel)]='seoCheckboxFlag' (click)='[seoSelected(),getTotal()]'> Una consultoria SEO (300€)
+<input type="checkbox" [(ngModel)]='adsCheckboxFlag' (click)='[adsSelected(),getTotal()]'> Una campanya Google Ads (200€)
+<p (change)='getTotal()'>{{total}}</p>
+
+
