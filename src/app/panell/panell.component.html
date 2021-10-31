@@ -1,4 +1,6 @@
 <div>
-    <p>Selecciona nº de pagines</p><input type="text">
-    <p>Selecciona nº de idiomes</p><input type="text">
+    <p>Selecciona nº de pagines</p><input type="text" [ngModel]='pagines' (ngModelChange)='[setPagines()]'>
+    
+    <p>Selecciona nº de idiomes</p><input type="text" [(ngModel)]='idiomes'>
+    
 </div>
