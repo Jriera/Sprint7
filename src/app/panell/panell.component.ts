@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ServeiWeb } from '../models/serveiWeb';
+import { CalculTotalsService } from '../services/calcul-totals.service';
 
 @Component({
   selector: 'app-panell',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./panell.component.css']
 })
 export class PanellComponent implements OnInit {
-
-  constructor() { }
+  @Input() passedWeb!:ServeiWeb;
+pagines:number =0;
+idiomes:number =0
+  constructor(private idiomesPagines:CalculTotalsService) { }
 
   ngOnInit(): void {
   }
+setPagines(){
+  this.idiomesPagines.getPagines(this.pagines);
+}
+setIdiomes(){
+  this.idiomesPagines.getIdiomes(this.idiomes);
+}
+
+
 
 }
