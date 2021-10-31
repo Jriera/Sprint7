@@ -7,7 +7,10 @@ import { ServeiWeb } from '../models/serveiWeb';
 })
 export class CalculTotalsService {
 serveis:Servei[]=[];
+pagines:number=0;
+idiomes:number=0;
 totalServeis:number=0;
+
   constructor() { }
 
   addServei(servei:Servei):void{
@@ -16,9 +19,10 @@ totalServeis:number=0;
 
   removeServei(servei:Servei):void{
     const index:number=this.serveis.indexOf(servei)
-    const newServeis:Servei[]=this.serveis.splice(index,1);
-    this.serveis=newServeis;
+    this.serveis.splice(index,1);
   }
+    
+    
 
   calculTotal(){
    this.totalServeis= this.serveis.map(servei=>servei.preu)
@@ -28,6 +32,23 @@ totalServeis:number=0;
   calculPreuWeb(web:ServeiWeb){
     web.preu=web.preu + (web.pagines*web.idiomes*30)
   }
+
+  getPagines(pagines:number):void{
+    this.pagines=pagines;
+
+  }
+  getIdiomes(idiomes:number):void{
+    this.idiomes=idiomes;
+
+  }
+
+  updateServeiWeb(web:ServeiWeb){
+    web.pagines=this.pagines;
+    web.idiomes=this.idiomes;
+    this.calculPreuWeb(web);
+    this.addServei(web);
+  }
+   
 
 
 }
