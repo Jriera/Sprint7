@@ -11,6 +11,24 @@ pagines:number=0;
 idiomes:number=0;
 totalServeis:number=0;
 
+web:ServeiWeb={
+  nom:'web',
+  preu:500,
+  pagines:0,
+  idiomes:0
+}
+
+seo:Servei={
+  nom:'seo',
+  preu:300
+}
+
+ads:Servei={
+  nom:'ads',
+  preu:200
+}
+
+
   constructor() { }
 
   addServei(servei:Servei):void{
@@ -20,6 +38,7 @@ totalServeis:number=0;
   removeServei(servei:Servei):void{
     const index:number=this.serveis.indexOf(servei)
     this.serveis.splice(index,1);
+    
   }
     
     
@@ -30,23 +49,26 @@ totalServeis:number=0;
   }
 
   calculPreuWeb(web:ServeiWeb){
-    web.preu=web.preu + (web.pagines*web.idiomes*30)
+    const preuWebInicial=500;
+    web.preu= preuWebInicial + (web.pagines*web.idiomes*30)
   }
 
   getPagines(pagines:number):void{
     this.pagines=pagines;
+    
 
   }
   getIdiomes(idiomes:number):void{
     this.idiomes=idiomes;
-
+    
   }
 
-  updateServeiWeb(web:ServeiWeb){
-    web.pagines=this.pagines;
-    web.idiomes=this.idiomes;
-    this.calculPreuWeb(web);
-    this.addServei(web);
+  updateServeiWeb(){
+    this.web.pagines=this.pagines;
+   this.web.idiomes=this.idiomes;
+    this.calculPreuWeb(this.web);
+    this.addServei(this.web);
+    console.log(this.serveis)
   }
    
 

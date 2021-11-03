@@ -1,6 +1,6 @@
 <div>
-    <p>Selecciona nº de pagines</p><input type="text" [ngModel]='pagines' (ngModelChange)='[setPagines()]'>
+    <p>Selecciona nº de pagines</p><button (click)='addPage()' >+</button><input type="number"  #inpagines min="0" [ngModel]='pagines' (ngModelChange)='[setPagines($event),actualitza(),totalEmision()]'>
     
-    <p>Selecciona nº de idiomes</p><input type="text" [(ngModel)]='idiomes'>
+    <p>Selecciona nº de idiomes</p><input type="number" min="0" [ngModel]='idiomes' (ngModelChange)='[setIdiomes($event),actualitza(),totalEmision()]' >
     
 </div>
