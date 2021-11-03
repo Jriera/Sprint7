@@ -1,6 +1,9 @@
 <div>
-    <p>Selecciona nº de pagines</p><input type="text" [ngModel]='pagines' (ngModelChange)='[setPagines()]'>
+    <label for="paginesForm">Selecciona nº de pagines</label><br>
+    <button (click)='addPagina()'>+</button><input type="text" [formControl]='paginesForm'><button (click)='subsPagina()'>-</button><br>
     
-    <p>Selecciona nº de idiomes</p><input type="text" [(ngModel)]='idiomes'>
+    <label for="idiomesForm">Selecciona nº de idiomes</label><br>
+    <button (click)='addIdioma()'>+</button><input type="text" [formControl]='idiomesForm'><button (click)='subsIdioma()'>-</button>
+        
     
 </div>
