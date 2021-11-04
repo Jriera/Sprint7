@@ -24,6 +24,7 @@ export class PanellComponent implements OnInit {
 pagines:number =0;
 idiomes:number =0;
 
+
   constructor(private idiomesPagines:CalculTotalsService) { }
 
   ngOnInit(): void {

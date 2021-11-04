@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalculTotalsService } from '../services/calcul-totals.service';
 import { Servei } from '../models/servei';
 import { ServeiWeb } from '../models/serveiWeb';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
