@@ -23,8 +23,7 @@ export class PanellComponent implements OnInit {
   
 pagines:number =0;
 idiomes:number =0;
-@ViewChild('inpagines') inpagines?:ElementRef;
-@Output() totalEmitter:EventEmitter<number> = new EventEmitter()
+
   constructor(private idiomesPagines:CalculTotalsService) { }
 
   ngOnInit(): void {
