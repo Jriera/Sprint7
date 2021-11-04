@@ -1,6 +1,11 @@
-<div>
-    <p>Selecciona nº de pagines</p><button (click)='addPage()' >+</button><input type="number"  #inpagines min="0" [ngModel]='pagines' (ngModelChange)='[setPagines($event),actualitza(),totalEmision()]'>
+
+<form [formGroup]='extrasWeb'>
+    <label for="paginesForm">Selecciona nº de pagines</label><br>
+    <button (click)='addPagina()'>+</button><input type="text" formControlName='paginesForm'><button (click)='subsPagina()'>-</button><br>
     
-    <p>Selecciona nº de idiomes</p><input type="number" min="0" [ngModel]='idiomes' (ngModelChange)='[setIdiomes($event),actualitza(),totalEmision()]' >
+    <label for="idiomesForm">Selecciona nº de idiomes</label><br>
+    <button (click)='addIdioma()'>+</button><input type="text" formControlName='idiomesForm'><button (click)='subsIdioma()'>-</button>
+        
+
     
-</div>
+</form>

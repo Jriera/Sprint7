@@ -1,7 +1,10 @@
-import { Component, Input, OnInit, Output,EventEmitter,ElementRef,ViewChild } from '@angular/core';
+
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 import { ServeiWeb } from '../models/serveiWeb';
 import { CalculTotalsService } from '../services/calcul-totals.service';
+import { FormControl,FormGroup } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-panell',
@@ -9,6 +12,14 @@ import { CalculTotalsService } from '../services/calcul-totals.service';
   styleUrls: ['./panell.component.css']
 })
 export class PanellComponent implements OnInit {
+
+  @Input() passedWeb!:ServeiWeb;
+  @Output() totalEmitter:EventEmitter<number> = new EventEmitter()
+  extrasWeb = new FormGroup({
+    paginesForm: new FormControl(''),
+    idiomesForm:new FormControl('')
+  });
+
   
 pagines:number =0;
 idiomes:number =0;
@@ -17,30 +28,54 @@ idiomes:number =0;
   constructor(private idiomesPagines:CalculTotalsService) { }
 
   ngOnInit(): void {
+    this.extrasWeb.setValue({paginesForm:0,idiomesForm:0});
+    this.onChanges();
+    
+
+
   }
-  
-setPagines(e:number){
-  this.pagines=e;
-  this.idiomesPagines.getPagines(this.pagines);
-  
+
+setPagines(){
+  this.idiomesPagines.getPagines(this.extrasWeb.value.paginesForm);
 }
-setIdiomes(e:number){
-  this.idiomes=e;
-  this.idiomesPagines.getIdiomes(this.idiomes);
- 
+setIdiomes(){
+  this.idiomesPagines.getIdiomes(this.extrasWeb.value.idiomesForm);
 }
+
+addPagina(){
+  this.extrasWeb.setValue({paginesForm:this.extrasWeb.value.paginesForm+1,idiomesForm:this.extrasWeb.value.idiomesForm})
+
+}
+
+subsPagina(){
+  this.extrasWeb.setValue({paginesForm:this.extrasWeb.value.paginesForm-1,idiomesForm:this.extrasWeb.value.idiomesForm})
+}
+
+addIdioma(){
+  this.extrasWeb.setValue({paginesForm:this.extrasWeb.value.paginesForm,idiomesForm:this.extrasWeb.value.idiomesForm+1})
+}
+
+subsIdioma(){
+  this.extrasWeb.setValue({paginesForm:this.extrasWeb.value.paginesForm,idiomesForm:this.extrasWeb.value.idiomesForm-1})
+}
+
 actualitza(){
   this.idiomesPagines.removeServei(this.idiomesPagines.web);
   this.idiomesPagines.updateServeiWeb();
 }
 
-totalEmision(){
+onChanges():void {
+this.extrasWeb.valueChanges.subscribe(val=>{
+  this.idiomesPagines.getPagines(val.paginesForm)
+  this.idiomesPagines.getIdiomes(val.idiomesForm)
+  this.actualitza()
   this.idiomesPagines.calculTotal();
   this.totalEmitter.emit(this.idiomesPagines.totalServeis)
-  console.log('emitter called')
+  console.log(this.idiomesPagines.totalServeis)
+  console.log('total emitted');
+  
+})
 }
 
-addPage(){
- this.inpagines?.nativeElement.value+1
-}
+
 }
