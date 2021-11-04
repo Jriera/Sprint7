@@ -42,8 +42,6 @@ export class HomeComponent implements OnInit {
       this.operativaServeis.removeServei(this.operativaServeis.web);
       this.operativaServeis.pagines = 0;
       this.operativaServeis.idiomes = 0;
-      console.log('web is false')
-      console.log(this.operativaServeis.serveis)
     }
   }
   seoSelected() {
@@ -57,7 +55,6 @@ export class HomeComponent implements OnInit {
     this.adsCheckboxFlag === true
       ? this.operativaServeis.addServei(this.ads)
       : this.operativaServeis.removeServei(this.ads);
-      console.log(this.operativaServeis.serveis)
   }
 
   getTotal(): void {
