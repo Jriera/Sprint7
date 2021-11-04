@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Servei } from '../models/servei';
-import { ServeiWeb } from '../models/serveiWeb';
 import { CalculTotalsService } from '../services/calcul-totals.service';
 
 @Component({
@@ -9,6 +7,7 @@ import { CalculTotalsService } from '../services/calcul-totals.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
   webCheckboxFlag: boolean = false;
   seoCheckboxFlag: boolean = false;
   adsCheckboxFlag: boolean = false;
@@ -53,6 +52,7 @@ export class HomeComponent implements OnInit {
       ? this.operativaServeis.addServei(this.ads)
       : this.operativaServeis.removeServei(this.ads);
   }
+
 
   getTotal(): void {
     this.operativaServeis.calculTotal();

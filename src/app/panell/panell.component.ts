@@ -1,4 +1,6 @@
+
 import { Component, Input, OnInit, Output } from '@angular/core';
+
 import { ServeiWeb } from '../models/serveiWeb';
 import { CalculTotalsService } from '../services/calcul-totals.service';
 import { FormControl,FormGroup } from '@angular/forms';
@@ -10,15 +12,19 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./panell.component.css']
 })
 export class PanellComponent implements OnInit {
+
   @Input() passedWeb!:ServeiWeb;
   @Output() totalEmitter:EventEmitter<number> = new EventEmitter()
   extrasWeb = new FormGroup({
     paginesForm: new FormControl(''),
     idiomesForm:new FormControl('')
   });
+
   
 pagines:number =0;
-idiomes:number =0
+idiomes:number =0;
+@ViewChild('inpagines') inpagines?:ElementRef;
+@Output() totalEmitter:EventEmitter<number> = new EventEmitter()
   constructor(private idiomesPagines:CalculTotalsService) { }
 
   ngOnInit(): void {
@@ -28,6 +34,7 @@ idiomes:number =0
 
 
   }
+
 setPagines(){
   this.idiomesPagines.getPagines(this.extrasWeb.value.paginesForm);
 }
@@ -69,5 +76,6 @@ this.extrasWeb.valueChanges.subscribe(val=>{
   
 })
 }
+
 
 }
