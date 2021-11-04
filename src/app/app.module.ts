@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PanellComponent } from './panell/panell.component';
+import { BenvingudaComponent } from './benvinguda/benvinguda.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PanellComponent
+    PanellComponent,
+    BenvingudaComponent
   ],
   imports: [
     BrowserModule,
