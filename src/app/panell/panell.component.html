@@ -1,9 +1,9 @@
-<div>
+<form [formGroup]='extrasWeb'>
     <label for="paginesForm">Selecciona nº de pagines</label><br>
-    <button (click)='addPagina()'>+</button><input type="text" [formControl]='paginesForm'><button (click)='subsPagina()'>-</button><br>
+    <button (click)='addPagina()'>+</button><input type="text" formControlName='paginesForm'><button (click)='subsPagina()'>-</button><br>
     
     <label for="idiomesForm">Selecciona nº de idiomes</label><br>
-    <button (click)='addIdioma()'>+</button><input type="text" [formControl]='idiomesForm'><button (click)='subsIdioma()'>-</button>
+    <button (click)='addIdioma()'>+</button><input type="text" formControlName='idiomesForm'><button (click)='subsIdioma()'>-</button>
         
     
-</div>
+</form>
