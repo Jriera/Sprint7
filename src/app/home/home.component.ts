@@ -9,7 +9,6 @@ import { ServeiWeb } from '../models/serveiWeb';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   webCheckboxFlag: boolean = false;
   seoCheckboxFlag: boolean = false;
   adsCheckboxFlag: boolean = false;
@@ -38,9 +37,13 @@ export class HomeComponent implements OnInit {
 
   webSelected() {
     this.webCheckboxFlag = !this.webCheckboxFlag;
-    this.webCheckboxFlag === true
-      ? this.operativaServeis.addServei(this.web)
-      : this.operativaServeis.removeServei(this.web);
+    if (this.webCheckboxFlag === true) {
+      this.operativaServeis.addServei(this.web);
+    } else {
+      this.operativaServeis.removeServei(this.operativaServeis.web);
+      this.operativaServeis.pagines = 0;
+      this.operativaServeis.idiomes = 0;
+    }
   }
   seoSelected() {
     this.seoCheckboxFlag = !this.seoCheckboxFlag;
@@ -54,7 +57,6 @@ export class HomeComponent implements OnInit {
       ? this.operativaServeis.addServei(this.ads)
       : this.operativaServeis.removeServei(this.ads);
   }
-
 
   getTotal(): void {
     this.operativaServeis.calculTotal();
