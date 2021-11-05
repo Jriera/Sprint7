@@ -1,0 +1,54 @@
+<div *ngIf="pressupostos.length!=0" class="table-holder">
+    <table *ngIf="ordreNormal">
+        <tr>
+            <th mat-sort-header="nom">Nom del Pressupost</th>
+            <th mat-sort-header="client">Nom del Client</th>
+            <th mat-sort-header="Preu">Preu (€)</th>
+            <th mat-sort-header="Data">Data (aaaa-mm-dd)</th>
+
+        </tr>
+        
+            <tr *ngFor="let pressupost of pressupostos;let i=index">
+                <td>{{pressupost.nom}}</td>
+                <td>{{pressupost.client}}</td>
+                <td>{{pressupost.preu}}</td>
+                <td>{{pressupost.data}}</td>
+                <td><button mat-raised-button color="primary" (click)="editarPressupost(pressupostos[i])">Editar</button></td>
+                <td><button mat-raised-button color="warn" (click)="eliminarPressupost(pressupostos[i])">Eliminar</button></td>
+            </tr>
+        
+    </table>
+    <table *ngIf="alphabetic">
+        <tr>
+            <th mat-sort-header="nom">Nom del Pressupost</th>
+            <th mat-sort-header="client">Nom del Client</th>
+            <th mat-sort-header="Preu">Preu (€)</th>
+            <th mat-sort-header="Data">Data (aaaa-mm-dd)</th>
+
+        </tr>
+        
+        <tr *ngFor="let pressupost of taulaAlfabetica;let i=index">
+            <td>{{pressupost.nom}}</td>
+            <td>{{pressupost.client}}</td>
+            <td>{{pressupost.preu}}</td>
+            <td>{{pressupost.data}}</td>
+            <td><button mat-raised-button color="primary" (click)="editarPressupost(pressupostos[i])">Editar</button></td>
+            <td><button mat-raised-button color="warn" (click)="eliminarPressupost(pressupostos[i])">Eliminar</button></td>
+        </tr>
+        
+    </table>
+
+       
+
+    
+    
+   <mat-card-actions><button mat-raised-button color="primary" (click)="ordreAlphabetic()">Ordre Alfabetic</button></mat-card-actions> 
+</div>
+
+
+
+<div *ngIf="pressupostos.length===0">
+    <p>Cap pressupost desat</p>
+
+
+</div>
