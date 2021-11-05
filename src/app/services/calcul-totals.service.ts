@@ -38,6 +38,7 @@ ads:Servei={
   removeServei(servei:Servei):void{
     const index:number=this.serveis.indexOf(servei)
     this.serveis.splice(index,1);
+   
     
   }
     
@@ -69,6 +70,12 @@ ads:Servei={
     this.calculPreuWeb(this.web);
     this.addServei(this.web);
     console.log(this.serveis)
+  }
+
+  resetServeiWeb(){
+    this.web.preu=500
+    this.web.pagines=0
+    this.web.pagines=0
   }
    
 
