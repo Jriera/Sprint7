@@ -1,11 +1,28 @@
+<form [formGroup]='extrasWeb' class="web-form" style="font-size: 12px;">
 
-<form [formGroup]='extrasWeb'>
-    <label for="paginesForm">Selecciona nº de pagines</label><br>
-    <button (click)='addPagina()'>+</button><input type="text" formControlName='paginesForm'><button (click)='subsPagina()'>-</button><br>
-    
-    <label for="idiomesForm">Selecciona nº de idiomes</label><br>
-    <button (click)='addIdioma()'>+</button><input type="text" formControlName='idiomesForm'><button (click)='subsIdioma()'>-</button>
-        
+    <div class="extra">
+        <button mat-flat-button color="warn" (click)='addPagina()'>+</button>
+        <mat-form-field class="web-inputs" appearance="fill">
+            <mat-label for="paginesForm">Selecciona nº de pagines</mat-label>
+            <input matInput type="text" formControlName='paginesForm'>
+        </mat-form-field>
+        <button mat-flat-button color="warn" (click)='subsPagina()'>-</button>
+        <mat-icon color='accent'>info</mat-icon><br>
+    </div>
 
     
+
+    <div class="extra">
+        <button mat-flat-button color="warn" (click)='addIdioma()'>+</button>
+        <mat-form-field class="web-inputs" appearance="fill">
+            <mat-label for="idiomesForm">Selecciona nº de idiomes</mat-label>
+            <input matInput type="text" formControlName='idiomesForm'>
+        </mat-form-field>
+        <button mat-flat-button color="warn" (click)='subsIdioma()'>-</button>
+        <mat-icon color='accent'>info</mat-icon>
+    </div>
+
+
+
+
 </form>
