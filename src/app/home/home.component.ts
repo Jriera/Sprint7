@@ -31,8 +31,8 @@ import { trigger, state, style, animate, transition} from '@angular/animations'
 export class HomeComponent implements OnInit {
 
   saveData= new FormGroup({
-    client: new FormControl(''),
-    nomPressupost: new FormControl('')
+    clientForm: new FormControl(''),
+    nomPressuposForm: new FormControl('')
 
   })
   webCheckboxFlag: boolean = false;
