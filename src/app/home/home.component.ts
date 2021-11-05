@@ -1,14 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { CalculTotalsService } from '../services/calcul-totals.service';
+import { FormControl,FormGroup } from '@angular/forms';
 import { Servei } from '../models/servei';
 import { ServeiWeb } from '../models/serveiWeb';
+import { trigger, state, style, animate, transition} from '@angular/animations'
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('inOutPaneAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(-50%)' }), 
+        animate(
+          '750ms ease-in-out',
+          style({ opacity: 1, transform: 'translateX(0)' })
+        ),
+      ]),
+      transition(':leave', [
+        style({ opacity: 1, transform: 'translateX(0)' }), 
+        animate(
+          '600ms ease-in-out',
+          style({ opacity: 0, transform: 'translateX(-50%)' })
+        ),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent implements OnInit {
+
+  saveData= new FormGroup({
+    client: new FormControl(''),
+    nomPressupost: new FormControl('')
+
+  })
   webCheckboxFlag: boolean = false;
   seoCheckboxFlag: boolean = false;
   adsCheckboxFlag: boolean = false;
