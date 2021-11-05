@@ -12,6 +12,7 @@ import { PanellComponent } from './panell/panell.component';
 import { BenvingudaComponent } from './benvinguda/benvinguda.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponentComponent } from './nav-component/nav-component.component';
+import { PressupostListComponent } from './pressupost-list/pressupost-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavComponentComponent } from './nav-component/nav-component.component';
     HomeComponent,
     PanellComponent,
     BenvingudaComponent,
-    NavComponentComponent
+    NavComponentComponent,
+    PressupostListComponent
   ],
   imports: [
     BrowserModule,
