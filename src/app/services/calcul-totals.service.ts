@@ -8,15 +8,19 @@ import { Pressupost } from '../models/pressupost';
 })
 export class CalculTotalsService {
   serveis: Servei[] = [];
-  pressupost:Pressupost = {
-    nom:'',
-    client:'',
-    serveis:this.serveis
-  }
-  pressupostosList:Pressupost[]=[];
+  
   pagines: number = 0;
   idiomes: number = 0;
   totalServeis: number = 0;
+
+  pressupost:Pressupost = {
+    nom:'',
+    client:'',
+    serveis:this.serveis,
+    preu:this.totalServeis,
+    data:this.getCurrentDate()
+  }
+  pressupostosList:Pressupost[]=[];
 
   web: ServeiWeb = {
     nom: 'web',
@@ -81,11 +85,15 @@ export class CalculTotalsService {
   creaPressupost(nom:string,client:string){
     this.pressupost.nom=nom;
     this.pressupost.client=client;
-    this.pressupost.serveis = this.serveis
+    this.pressupost.serveis = this.serveis;
+    this.pressupost.preu = this.totalServeis;
+    this.pressupost.data = this.getCurrentDate();
+
   }
 
   addPressupost(){
-    this.pressupostosList.push(this.pressupost) 
+    let pressupost = new Pressupost(this.pressupost.nom,this.pressupost.client,this.serveis,this.totalServeis,this.getCurrentDate());
+    this.pressupostosList.push(pressupost) 
     console.log(this.pressupostosList);
   }
 
@@ -93,5 +101,14 @@ export class CalculTotalsService {
     this.resetServeiWeb();
     this.serveis=[];
     this.totalServeis=0;
+  }
+
+  getCurrentDate(){
+    var currentDate = new Date();
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1;
+    var year = currentDate.getFullYear();
+    return new Date(year, month, day).toISOString().split('T')[0];
+    
   }
 }
