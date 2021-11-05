@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalculTotalsService } from '../services/calcul-totals.service';
 import { FormControl,FormGroup } from '@angular/forms';
-import { Servei } from '../models/servei';
-import { ServeiWeb } from '../models/serveiWeb';
 import { trigger, state, style, animate, transition} from '@angular/animations'
 
 @Component({
@@ -39,22 +37,7 @@ export class HomeComponent implements OnInit {
   seoCheckboxFlag: boolean = false;
   adsCheckboxFlag: boolean = false;
 
-  web: ServeiWeb = {
-    nom: 'web',
-    preu: 500,
-    pagines: 0,
-    idiomes: 0,
-  };
-
-  seo: Servei = {
-    nom: 'seo',
-    preu: 300,
-  };
-
-  ads: Servei = {
-    nom: 'ads',
-    preu: 200,
-  };
+  
 
   total = 0;
   constructor(private operativaServeis: CalculTotalsService) {}
@@ -64,24 +47,24 @@ export class HomeComponent implements OnInit {
   webSelected() {
     this.webCheckboxFlag = !this.webCheckboxFlag;
     if (this.webCheckboxFlag === true) {
-      this.operativaServeis.addServei(this.web);
+      this.operativaServeis.addServei(this.operativaServeis.web);
     } else {
       this.operativaServeis.removeServei(this.operativaServeis.web);
-      this.operativaServeis.pagines = 0;
-      this.operativaServeis.idiomes = 0;
+      this.operativaServeis.resetServeiWeb();
+      
     }
   }
   seoSelected() {
     this.seoCheckboxFlag = !this.seoCheckboxFlag;
     this.seoCheckboxFlag === true
-      ? this.operativaServeis.addServei(this.seo)
-      : this.operativaServeis.removeServei(this.seo);
+      ? this.operativaServeis.addServei(this.operativaServeis.seo)
+      : this.operativaServeis.removeServei(this.operativaServeis.seo);
   }
   adsSelected() {
     this.adsCheckboxFlag = !this.adsCheckboxFlag;
     this.adsCheckboxFlag === true
-      ? this.operativaServeis.addServei(this.ads)
-      : this.operativaServeis.removeServei(this.ads);
+      ? this.operativaServeis.addServei(this.operativaServeis.ads)
+      : this.operativaServeis.removeServei(this.operativaServeis.ads);
   }
 
   getTotal(): void {
