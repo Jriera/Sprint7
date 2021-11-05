@@ -43,11 +43,14 @@
                   </mat-form-field>
           
               <mat-form-field appearance="fill" class="dades-form">
-                <mat-label for="nomPressupostForm">Nom del Pressupost</mat-label>
-                <input matInput type="text" formControlName='nomPressupostForm'>
+                <mat-label for="nomForm">Nom del Pressupost</mat-label>
+                <input matInput type="text" formControlName='nomForm'>
                   </mat-form-field>
           </form>
-          <mat-card-actions><button mat-flat-button color="primary">Desa el Pressupost</button></mat-card-actions>
+          <mat-card-actions>
+              <button mat-flat-button color="primary" (click)="desaPressupost()">Desa el Pressupost</button>
+              <button mat-flat-button color="primary" (click)="test()">Console Pressupostos</button>
+            </mat-card-actions>
       </mat-card>
 
 
