@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSnackBarModule} from '@angular/material/snack-bar';  
 
 
 
@@ -29,7 +30,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatListModule,
     MatCardModule,
     MatInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }
