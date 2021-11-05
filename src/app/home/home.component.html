@@ -1,10 +1,41 @@
-<h4>Que desitges fer?</h4>
-<input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
-<app-panell *ngIf='webCheckboxFlag===true' (totalEmitter)='updateTotal($event)'></app-panell>
-<input type="checkbox" [(ngModel)]='seoCheckboxFlag' (click)='[seoSelected(),getTotal()]'> Una consultoria SEO (300€)
-<input type="checkbox" [(ngModel)]='adsCheckboxFlag' (click)='[adsSelected(),getTotal()]'> Una campanya Google Ads (200€)
-<p (change)='getTotal()'>{{total}}</p>
-<br>
-<button routerLink='/'>Enrere</button>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <span>App Pressupostos - Angular </span>
+        <button mat-stroked-button color="basic" routerLink='/'>Inici</button>
+      </mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+    
+    
+    
+
+    <mat-card>
+        <mat-card-title><h3>Quin servei desitges?</h3></mat-card-title>
+       
+        <input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
+    </mat-card>
+    <mat-card *ngIf='webCheckboxFlag===true' @inOutPaneAnimation >
+        <app-panell   @inOutPaneAnimation (totalEmitter)='updateTotal($event)'></app-panell>
+    </mat-card>
+      <mat-card> 
+        <input type="checkbox" [(ngModel)]='seoCheckboxFlag' (click)='[seoSelected(),getTotal()]'> Una consultoria SEO (300€)
+      </mat-card>
+      <mat-card> 
+        <input type="checkbox" [(ngModel)]='adsCheckboxFlag' (click)='[adsSelected(),getTotal()]'> Una campanya Google Ads (200€)
+      
+        <mat-card-footer>
+            <h4 (change)='getTotal()'>Preu Total: {{total}} €</h4>
+        </mat-card-footer>
+       
+      </mat-card>
+      
+      <br>
+      
+      <br>
+
+
 
 
