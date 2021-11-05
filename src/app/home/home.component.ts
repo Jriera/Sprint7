@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   saveData= new FormGroup({
     clientForm: new FormControl(''),
-    nomPressuposForm: new FormControl('')
+    nomForm: new FormControl('')
 
   })
   webCheckboxFlag: boolean = false;
@@ -74,5 +74,23 @@ export class HomeComponent implements OnInit {
 
   updateTotal(newTotal: number) {
     this.total = newTotal;
+  }
+
+  resetCheckboxes(){
+    this.webCheckboxFlag=false;
+    this.seoCheckboxFlag=false;
+    this.adsCheckboxFlag=false;
+  }
+
+  desaPressupost(){
+    this.operativaServeis.creaPressupost(this.saveData.value.nomForm,this.saveData.value.clientForm);
+    this.operativaServeis.addPressupost();
+    this.resetCheckboxes();
+    this.operativaServeis.resetServices();
+    this.getTotal()
+  }
+
+  test(){
+    console.log(this.operativaServeis.pressupostosList)
   }
 }
