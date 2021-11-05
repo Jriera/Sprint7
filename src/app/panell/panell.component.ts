@@ -71,8 +71,7 @@ this.extrasWeb.valueChanges.subscribe(val=>{
   this.actualitza()
   this.idiomesPagines.calculTotal();
   this.totalEmitter.emit(this.idiomesPagines.totalServeis)
-  console.log(this.idiomesPagines.totalServeis)
-  console.log('total emitted');
+  
   
 })
 }
