@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CalculTotalsService } from '../services/calcul-totals.service';
 import { FormControl,FormGroup } from '@angular/forms';
-import { trigger, state, style, animate, transition} from '@angular/animations'
+import { trigger, state, style, animate, transition} from '@angular/animations';
+
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ import { trigger, state, style, animate, transition} from '@angular/animations'
 })
 export class HomeComponent implements OnInit {
 
-  saveData= new FormGroup({
+  saveData= new FormGroup({//TODO: afegir validació de camps
     clientForm: new FormControl(''),
     nomForm: new FormControl('')
 
@@ -47,10 +48,11 @@ export class HomeComponent implements OnInit {
   webSelected() {
     this.webCheckboxFlag = !this.webCheckboxFlag;
     if (this.webCheckboxFlag === true) {
+      this.operativaServeis.web.preu=500;
       this.operativaServeis.addServei(this.operativaServeis.web);
     } else {
       this.operativaServeis.removeServei(this.operativaServeis.web);
-      this.operativaServeis.resetServeiWeb();
+      
       
     }
   }
@@ -74,6 +76,8 @@ export class HomeComponent implements OnInit {
 
   updateTotal(newTotal: number) {
     this.total = newTotal;
+    
+    
   }
 
   resetCheckboxes(){
@@ -82,15 +86,24 @@ export class HomeComponent implements OnInit {
     this.adsCheckboxFlag=false;
   }
 
-  desaPressupost(){
-    this.operativaServeis.creaPressupost(this.saveData.value.nomForm,this.saveData.value.clientForm);
+  /* Per si fos necessari incloure funcionalitat localStorage
+  setLocalStorageData(){
+    localStorage.setItem('pressupostos', JSON.stringify(this.operativaServeis.pressupostosList));
+    console.log(localStorage.getItem('pressupostos'));
+    
+  } */
+
+  
+  desaPressupost(){ //TODO disabled button desa pressupost si no hi ha cap servei seleccionat i reset formulari de pressupost
+   
+    this.operativaServeis.pressupost.nom=this.saveData.value.nomForm;
+    this.operativaServeis.pressupost.client=this.saveData.value.clientForm;
     this.operativaServeis.addPressupost();
     this.resetCheckboxes();
     this.operativaServeis.resetServices();
     this.getTotal()
+    /* this.setLocalStorageData(); */
   }
 
-  test(){
-    console.log(this.operativaServeis.pressupostosList)
-  }
+
 }
