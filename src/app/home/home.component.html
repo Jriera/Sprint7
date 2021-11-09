@@ -12,11 +12,11 @@
     
     
 
-    <mat-card>
-        <mat-card-title><h3>1 - Quins serveis desitges?</h3></mat-card-title>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header><h3>1 - Quins serveis desitges?</h3></mat-expansion-panel-header>
        
         <input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
-    </mat-card>
+    
     <mat-card *ngIf='webCheckboxFlag===true' @inOutPaneAnimation >
         <app-panell   @inOutPaneAnimation (totalEmitter)='updateTotal($event)'></app-panell>
     </mat-card>
@@ -29,8 +29,8 @@
         <mat-card-footer>
             <h4 (change)='getTotal()'>Preu Total: {{total}} €</h4>
         </mat-card-footer>
-       
       </mat-card>
+      </mat-expansion-panel>
       
       <br>
 
