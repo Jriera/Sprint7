@@ -15,7 +15,9 @@
     <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header><h3>1 - Quins serveis desitges?</h3></mat-expansion-panel-header>
        
-        <input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
+        <mat-card>
+          <input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
+        </mat-card>
     
     <mat-card *ngIf='webCheckboxFlag===true' @inOutPaneAnimation >
         <app-panell   @inOutPaneAnimation (totalEmitter)='updateTotal($event)'></app-panell>
