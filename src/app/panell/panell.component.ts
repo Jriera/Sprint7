@@ -62,6 +62,7 @@ subsIdioma(){
 actualitza(){
   this.idiomesPagines.removeServei(this.idiomesPagines.web);
   this.idiomesPagines.updateServeiWeb();
+  
 }
 
 onChanges():void {
@@ -70,7 +71,8 @@ this.extrasWeb.valueChanges.subscribe(val=>{
   this.idiomesPagines.getIdiomes(val.idiomesForm)
   this.actualitza()
   this.idiomesPagines.calculTotal();
-  this.totalEmitter.emit(this.idiomesPagines.totalServeis)
+  this.totalEmitter.emit(this.idiomesPagines.totalServeis);
+  
   
   
 })
