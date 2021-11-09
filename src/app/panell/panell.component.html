@@ -7,10 +7,11 @@
             <input matInput type="text" formControlName='paginesForm'>
         </mat-form-field>
         <button mat-flat-button color="warn" (click)='subsPagina()'>-</button>
-        <mat-icon color='accent'>info</mat-icon><br>
+        <mat-icon color='warn' #tooltip="matTooltip" matTooltip="En aquest component defineix les pagines que ha d'incloure el seu lloc web"
+            [matTooltipPosition]="position.value" matTooltipHideDelay="1000">info</mat-icon><br>
     </div>
 
-    
+
 
     <div class="extra">
         <button mat-flat-button color="warn" (click)='addIdioma()'>+</button>
@@ -19,7 +20,8 @@
             <input matInput type="text" formControlName='idiomesForm'>
         </mat-form-field>
         <button mat-flat-button color="warn" (click)='subsIdioma()'>-</button>
-        <mat-icon color='accent'>info</mat-icon>
+        <mat-icon color='warn' #tooltip="matTooltip" matTooltip="En aquest component defineix els idiomes que ha d'incloure el seu lloc web"
+            [matTooltipPosition]="position.value" matTooltipHideDelay="1000">info</mat-icon>
     </div>
 
 
