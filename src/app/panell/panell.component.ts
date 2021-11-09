@@ -6,6 +6,8 @@ import { CalculTotalsService } from '../services/calcul-totals.service';
 import { FormControl,FormGroup } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 
+import {TooltipPosition} from '@angular/material/tooltip';
+
 @Component({
   selector: 'app-panell',
   templateUrl: './panell.component.html',
@@ -24,6 +26,8 @@ export class PanellComponent implements OnInit {
 pagines:number =0;
 idiomes:number =0;
 
+positionOptions: TooltipPosition[] = ['below', 'above', 'left', 'right'];
+position = new FormControl(this.positionOptions[3]);
 
   constructor(private idiomesPagines:CalculTotalsService) { }
 
