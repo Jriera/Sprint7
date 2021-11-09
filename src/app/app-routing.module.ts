@@ -7,7 +7,7 @@ import { NavComponentComponent } from './nav-component/nav-component.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent},
-  {path:'', component:NavComponentComponent}
+  {path:'', component:BenvingudaComponent},
 ];
 
 @NgModule({
