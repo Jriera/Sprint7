@@ -3,6 +3,7 @@ import { Servei } from '../models/servei';
 import { ServeiWeb } from '../models/serveiWeb';
 import { Pressupost } from '../models/pressupost';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +27,7 @@ export class CalculTotalsService {
     nom: 'web',
     preu: 500,
     pagines: 0,
-    idiomes: 0,
+    idiomes: 0
   };
 
   seo: Servei = {
@@ -43,6 +44,7 @@ export class CalculTotalsService {
 
   addServei(servei: Servei): void {
     this.serveis.push(servei);
+    
   }
 
   removeServei(servei: Servei): void {
@@ -73,42 +75,38 @@ export class CalculTotalsService {
     this.web.idiomes = this.idiomes;
     this.calculPreuWeb(this.web);
     this.addServei(this.web);
-    console.log(this.serveis);
+
+    
+    
   }
 
-  resetServeiWeb() {
-    this.web.preu = 500;
-    this.web.pagines = 0;
-    this.web.pagines = 0;
-  }
-
-  creaPressupost(nom:string,client:string){
-    this.pressupost.nom=nom;
-    this.pressupost.client=client;
-    this.pressupost.serveis = this.serveis;
-    this.pressupost.preu = this.totalServeis;
-    this.pressupost.data = this.getCurrentDate();
-
-  }
+ 
+  
 
   addPressupost(){
-    let pressupost = new Pressupost(this.pressupost.nom,this.pressupost.client,this.serveis,this.totalServeis,this.getCurrentDate());
+    this.pressupost.serveis = [];
+    
+    this.serveis.forEach(val => this.pressupost.serveis.push(Object.assign({}, val)));
+
+
+    const pressupost = new Pressupost(this.pressupost.nom,this.pressupost.client,this.pressupost.serveis,this.totalServeis,this.getCurrentDate());
     this.pressupostosList.push(pressupost) 
     console.log(this.pressupostosList);
+   
   }
 
   resetServices(){
-    this.resetServeiWeb();
+   
     this.serveis=[];
     this.totalServeis=0;
   }
 
   getCurrentDate(){
-    var currentDate = new Date();
-    var day = currentDate.getDate();
-    var month = currentDate.getMonth() + 1;
-    var year = currentDate.getFullYear();
-    return new Date(year, month, day).toISOString().split('T')[0];
+    const currentDate = new Date();
+    return currentDate.toISOString().split('.')[0];
+    
     
   }
+
+  
 }
