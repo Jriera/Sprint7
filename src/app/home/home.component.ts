@@ -32,7 +32,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  saveData= new FormGroup({//TODO: afegir validació de camps
+  saveData= new FormGroup({//TODO: afegir validació de camps al formulari per dessar pressupost
     clientForm: new FormControl(''),
     nomForm: new FormControl('')
 
@@ -48,21 +48,20 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.activateRoute.queryParams.subscribe(params => {
-      console.log(params);
+      //captura dels parametres de la url
+      //TODO revisar si hi ha un metode millor que subscribe per tal de evitar els ifs
       
       if(params.seo==='true'){
-        if(this.operativaServeis.serveis.includes(this.operativaServeis.seo)){
+        if(this.operativaServeis.serveis.includes(this.operativaServeis.seo)){//condicio per evitar duplicats
         }else{
-        console.log(typeof(params.seo));
         this.seoCheckboxFlag=params.seo;
         this.operativaServeis.addServei(this.operativaServeis.seo)
-        console.log(this.operativaServeis.serveis)
         this.getTotal();
         }
         
       }
       if(params.ads=== 'true'){
-        if(this.operativaServeis.serveis.includes(this.operativaServeis.ads)){
+        if(this.operativaServeis.serveis.includes(this.operativaServeis.ads)){//condicio per evitar duplicats
         }else{
         this.adsCheckboxFlag=params.ads;
         this.operativaServeis.addServei(this.operativaServeis.ads)
@@ -70,7 +69,7 @@ export class HomeComponent implements OnInit {
         }
       }
       if(params.web=== 'true'){
-        if(this.operativaServeis.serveis.includes(this.operativaServeis.web)){
+        if(this.operativaServeis.serveis.includes(this.operativaServeis.web)){//condicio per evitar duplicats
         }else{
         this.webCheckboxFlag=true;
         this.operativaServeis.web.preu=500;
@@ -85,7 +84,7 @@ export class HomeComponent implements OnInit {
   webSelected() {
     this.webCheckboxFlag = !this.webCheckboxFlag;
     if (this.webCheckboxFlag === true) {
-      this.operativaServeis.web.preu=500;
+      this.operativaServeis.web.preu=500;//reset del preu del servei web
       this.operativaServeis.addServei(this.operativaServeis.web);
       this.afegeixParams();
     } else {
@@ -115,7 +114,7 @@ export class HomeComponent implements OnInit {
     this.total = this.operativaServeis.totalServeis;
   }
 
-  updateTotal(newTotal: number) {
+  updateTotal(newTotal: number) {//funcio que es crida en cada canvi del total produit per el component panell
     this.total = newTotal;
     
     
@@ -146,7 +145,7 @@ export class HomeComponent implements OnInit {
     /* this.setLocalStorageData(); */
   }
 
-  afegeixParams(){
+  afegeixParams(){ //funcio per actualitzar els parametres de la url
     this.router.navigate([], {
       queryParams: {
         web: this.webCheckboxFlag,

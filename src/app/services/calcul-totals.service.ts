@@ -21,7 +21,9 @@ export class CalculTotalsService {
     preu:this.totalServeis,
     data:this.getCurrentDate()
   }
+
   pressupostosList:Pressupost[]=[];
+
 
   web: ServeiWeb = {
     nom: 'web',
@@ -87,6 +89,7 @@ export class CalculTotalsService {
     this.pressupost.serveis = [];
     
     this.serveis.forEach(val => this.pressupost.serveis.push(Object.assign({}, val)));
+   //necessari per crear un nou array independent del que tingui el servei i evitar que els serveis del pressupost segueixin canviant
 
 
     const pressupost = new Pressupost(this.pressupost.nom,this.pressupost.client,this.pressupost.serveis,this.totalServeis,this.getCurrentDate());

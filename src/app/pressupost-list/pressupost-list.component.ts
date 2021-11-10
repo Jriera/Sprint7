@@ -12,15 +12,19 @@ import { FormControl } from '@angular/forms';
 export class PressupostListComponent implements OnInit {
   cercaForm = new FormControl('');
   pressupostos:Pressupost[]=[];
+
+  //arrays per a cada filtre de la taula
   cercaResultat:Pressupost[]=[];
   taulaAlfabetica:Pressupost[]=[];
   taulaData:Pressupost[]=[];
   taulaPreu:Pressupost[]=[];
+//flags dels filtres per esclarir quin es el que esta seleccionat
   alphabetic:boolean=false;
   ordreNormal:boolean=true;
   ordreData:Boolean=false;
   ordrePreu:boolean=false;
   cerca:boolean=false;
+
   constructor(private operativaServeis:CalculTotalsService) { }
 
   ngOnInit(): void {
@@ -29,9 +33,10 @@ export class PressupostListComponent implements OnInit {
   }
   editarPressupost(pressupost:Pressupost){
     console.log("editarPressupost")
-    //TODO editar pressupost
+    //TODO pendent inclorure funcionalitat editar pressupost
   }
   eliminarPressupost(pressupost:Pressupost){
+    //TODO pendent revisar problemes de la eliminacio en taules diferents a la original
     console.log("eliminarPressupost")
     const index = this.pressupostos.indexOf(pressupost);
     this.pressupostos.splice(index,1);
@@ -77,7 +82,7 @@ llistaPreu(){
   this.cerca=false;
 }
 
-resetOrdre(){
+resetOrdre(){ //?Reseteja els flags de filtres
   this.ordreNormal=true;
   this.ordreData=false;
   this.ordrePreu=false;
@@ -87,8 +92,9 @@ resetOrdre(){
 
 cercaUpdate():void{
   
-  this.cercaForm.valueChanges.subscribe(value=>{
-    this.cercaResultat=this.pressupostos.map(p=>p).filter(p=>p.nom.toLowerCase().includes(value.toLowerCase()))
+  this.cercaForm.valueChanges.subscribe(value=>{ //amb el subscribe s'obte una cerca dinamica
+    //la cerca es fa forçant lowercase per evitar problemes amb majuscules en les cerques i en les definicions
+    this.cercaResultat=this.pressupostos.map(p=>p).filter(p=>p.nom.toLowerCase().includes(value.toLowerCase()));
     this.ordreNormal=false;
     this.cercaResultat.length>0?this.cerca=true:this.cerca=false;
 
