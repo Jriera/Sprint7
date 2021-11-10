@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CalculTotalsService } from '../services/calcul-totals.service';
 import { FormControl,FormGroup } from '@angular/forms';
 import { trigger, state, style, animate, transition} from '@angular/animations';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -41,17 +44,53 @@ export class HomeComponent implements OnInit {
   
 
   total = 0;
-  constructor(private operativaServeis: CalculTotalsService) {}
+  constructor(private operativaServeis: CalculTotalsService,private activateRoute:ActivatedRoute,private router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activateRoute.queryParams.subscribe(params => {
+      console.log(params);
+      
+      if(params.seo==='true'){
+        if(this.operativaServeis.serveis.includes(this.operativaServeis.seo)){
+        }else{
+        console.log(typeof(params.seo));
+        this.seoCheckboxFlag=params.seo;
+        this.operativaServeis.addServei(this.operativaServeis.seo)
+        console.log(this.operativaServeis.serveis)
+        this.getTotal();
+        }
+        
+      }
+      if(params.ads=== 'true'){
+        if(this.operativaServeis.serveis.includes(this.operativaServeis.ads)){
+        }else{
+        this.adsCheckboxFlag=params.ads;
+        this.operativaServeis.addServei(this.operativaServeis.ads)
+        this.getTotal();
+        }
+      }
+      if(params.web=== 'true'){
+        if(this.operativaServeis.serveis.includes(this.operativaServeis.web)){
+        }else{
+        this.webCheckboxFlag=true;
+        this.operativaServeis.web.preu=500;
+        this.operativaServeis.addServei(this.operativaServeis.web);
+        this.operativaServeis.calculPreuWeb(this.operativaServeis.web);
+        this.getTotal();
+        }
+      }
+    })
+  }
 
   webSelected() {
     this.webCheckboxFlag = !this.webCheckboxFlag;
     if (this.webCheckboxFlag === true) {
       this.operativaServeis.web.preu=500;
       this.operativaServeis.addServei(this.operativaServeis.web);
+      this.afegeixParams();
     } else {
       this.operativaServeis.removeServei(this.operativaServeis.web);
+      this.afegeixParams();
       
       
     }
@@ -61,12 +100,14 @@ export class HomeComponent implements OnInit {
     this.seoCheckboxFlag === true
       ? this.operativaServeis.addServei(this.operativaServeis.seo)
       : this.operativaServeis.removeServei(this.operativaServeis.seo);
+      this.afegeixParams();
   }
   adsSelected() {
     this.adsCheckboxFlag = !this.adsCheckboxFlag;
     this.adsCheckboxFlag === true
       ? this.operativaServeis.addServei(this.operativaServeis.ads)
       : this.operativaServeis.removeServei(this.operativaServeis.ads);
+      this.afegeixParams();
   }
 
   getTotal(): void {
@@ -105,5 +146,15 @@ export class HomeComponent implements OnInit {
     /* this.setLocalStorageData(); */
   }
 
+  afegeixParams(){
+    this.router.navigate([], {
+      queryParams: {
+        web: this.webCheckboxFlag,
+        seo: this.seoCheckboxFlag,
+        ads: this.adsCheckboxFlag
+      },
+        queryParamsHandling:'merge'
+    })
+  }
 
 }
