@@ -1,0 +1,105 @@
+<mat-card *ngIf="pressupostos.length!=0">
+    <mat-card-actions>
+        <button mat-stroked-button (click)="ordreAlphabetic()">Ordre Alfabetic</button>
+        <button mat-stroked-button (click)="llistaData()">Ordena per Data</button>
+        <button mat-stroked-button (click)="llistaPreu()">Ordena per Preu</button>
+        <button mat-stroked-button (click)="resetOrdre()">Ordre Original</button>
+        <mat-icon>search</mat-icon>
+        <mat-form-field appearance="outline" class="cerca-form" color="warn">
+            <mat-label for="cercaForm">Cercar</mat-label>
+            <input matInput type="text" [formControl]="cercaForm">
+        </mat-form-field>
+
+
+    </mat-card-actions>
+    <div class="table-holder">
+        <table>
+            <tr>
+                <th mat-sort-header="nom">Nom del Pressupost</th>
+                <th mat-sort-header="client">Nom del Client</th>
+                <th mat-sort-header="Preu">Preu (€)</th>
+                <th mat-sort-header="Data">Data (aaaa-mm-dd)</th>
+            </tr>
+
+            <ng-container *ngFor="let pressupost of pressupostos;let i=index">
+                <tr *ngIf="ordreNormal">
+                    <td>{{pressupost.nom}}</td>
+                    <td>{{pressupost.client}}</td>
+                    <td>{{pressupost.preu}}</td>
+                    <td>{{pressupost.data}}</td>
+                    <td><button mat-raised-button color="primary"
+                            (click)="editarPressupost(pressupostos[i])">Editar</button></td>
+                    <td><button mat-raised-button color="warn"
+                            (click)="eliminarPressupost(pressupostos[i])">Eliminar</button></td>
+                </tr>
+            </ng-container>
+
+            <ng-container *ngFor="let pressupost of taulaAlfabetica;let i=index">
+                <tr *ngIf="alphabetic">
+                    <td>{{pressupost.nom}}</td>
+                    <td>{{pressupost.client}}</td>
+                    <td>{{pressupost.preu}}</td>
+                    <td>{{pressupost.data}}</td>
+                    <td><button mat-raised-button color="primary"
+                            (click)="editarPressupost(pressupostos[i])">Editar</button></td>
+                    <td><button mat-raised-button color="warn"
+                            (click)="eliminarPressupost(pressupostos[i])">Eliminar</button></td>
+                </tr>
+            </ng-container>
+            <ng-container *ngFor="let pressupost of taulaData;let i=index">
+                <tr *ngIf="ordreData">
+                    <td>{{pressupost.nom}}</td>
+                    <td>{{pressupost.client}}</td>
+                    <td>{{pressupost.preu}}</td>
+                    <td>{{pressupost.data}}</td>
+                    <td><button mat-raised-button color="primary"
+                            (click)="editarPressupost(pressupostos[i])">Editar</button></td>
+                    <td><button mat-raised-button color="warn"
+                            (click)="eliminarPressupost(pressupostos[i])">Eliminar</button></td>
+                </tr>
+            </ng-container>
+
+            <ng-container *ngFor="let pressupost of taulaPreu;let i=index">
+                <tr *ngIf="ordrePreu">
+                    <td>{{pressupost.nom}}</td>
+                    <td>{{pressupost.client}}</td>
+                    <td>{{pressupost.preu}}</td>
+                    <td>{{pressupost.data}}</td>
+                    <td><button mat-raised-button color="primary"
+                            (click)="editarPressupost(pressupostos[i])">Editar</button></td>
+                    <td><button mat-raised-button color="warn"
+                            (click)="eliminarPressupost(pressupostos[i])">Eliminar</button></td>
+                </tr>
+            </ng-container>
+
+            <ng-container *ngFor="let pressupost of cercaResultat;let i=index">
+                <tr *ngIf="cerca">
+                    <td>{{pressupost.nom}}</td>
+                    <td>{{pressupost.client}}</td>
+                    <td>{{pressupost.preu}}</td>
+                    <td>{{pressupost.data}}</td>
+                    <td><button mat-raised-button color="primary"
+                            (click)="editarPressupost(pressupostos[i])">Editar</button></td>
+                    <td><button mat-raised-button color="warn"
+                            (click)="eliminarPressupost(pressupostos[i])">Eliminar</button></td>
+                </tr>
+            </ng-container>
+
+        </table>
+
+    </div>
+
+
+
+
+
+
+</mat-card>
+
+
+
+<div *ngIf="pressupostos.length===0">
+    <p>Cap pressupost desat</p>
+
+
+</div>

@@ -1,10 +1,55 @@
-<h4>Que desitges fer?</h4>
-<input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
-<app-panell *ngIf='webCheckboxFlag===true' (totalEmitter)='updateTotal($event)'></app-panell>
-<input type="checkbox" [(ngModel)]='seoCheckboxFlag' (click)='[seoSelected(),getTotal()]'> Una consultoria SEO (300€)
-<input type="checkbox" [(ngModel)]='adsCheckboxFlag' (click)='[adsSelected(),getTotal()]'> Una campanya Google Ads (200€)
-<p (change)='getTotal()'>{{total}}</p>
-<br>
-<button routerLink='/'>Enrere</button>
+
+    
+    
+    
+
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header><h3>1 - Quins serveis desitges?</h3></mat-expansion-panel-header>
+       
+        <mat-card>
+          <input type="checkbox" [(ngModel)]='webCheckboxFlag' (click)='[webSelected(),getTotal()]'> Una pagina web (500€)
+        </mat-card>
+    
+    <mat-card *ngIf='webCheckboxFlag===true' @inOutPaneAnimation >
+        <app-panell   @inOutPaneAnimation (totalEmitter)='updateTotal($event)'></app-panell>
+    </mat-card>
+      <mat-card> 
+        <input type="checkbox" [(ngModel)]='seoCheckboxFlag' (click)='[seoSelected(),getTotal()]'> Una consultoria SEO (300€)
+      </mat-card>
+      <mat-card> 
+        <input type="checkbox" [(ngModel)]='adsCheckboxFlag' (click)='[adsSelected(),getTotal()]'> Una campanya Google Ads (200€)
+      
+        <mat-card-footer>
+            <h4 (change)='getTotal()'>Preu Total: {{total}} €</h4>
+        </mat-card-footer>
+      </mat-card>
+      </mat-expansion-panel>
+      
+      <br>
+
+      <mat-card>
+          <mat-card-title><h3>2 - Dades del Pressupost</h3></mat-card-title>
+          <form [formGroup]="saveData">
+              <mat-form-field appearance="fill" class="dades-form">
+                <mat-label for="clientForm">Nom del Client</mat-label>
+                <input matInput type="text" formControlName='clientForm'>
+                  </mat-form-field>
+          
+              <mat-form-field appearance="fill" class="dades-form">
+                <mat-label for="nomForm">Nom del Pressupost</mat-label>
+                <input matInput type="text" formControlName='nomForm'>
+                  </mat-form-field>
+          </form>
+          <mat-card-actions>
+              <button mat-flat-button color="primary" (click)="desaPressupost()">Desa el Pressupost</button>
+              
+            </mat-card-actions>
+      </mat-card>
+      <br>
+<mat-card>
+  <mat-card-subtitle>Llistat Pressupostos</mat-card-subtitle>
+  <mat-card-title>Els teus pressupostos</mat-card-title>
+  <app-pressupost-list></app-pressupost-list>
+</mat-card>
 
 

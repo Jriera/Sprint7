@@ -1,0 +1,32 @@
+mat-icon{
+    font-size: 18px;
+    margin-left: 6px;
+}
+button{
+    height: 35px;
+    width: 35px;
+    min-width: unset;
+    padding: 0;
+    margin:4px 12px 0 12px
+}
+
+.web-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+
+  .extra{
+    display: flex;
+    flex-direction: row;
+    
+  }
+  
+  .web-inputs {
+    width: 25%;
+    font-size: 12px;
+  }
+
+ 
+
+  
